@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ingrediant } from '../shared/Ingrediant.Model';
+import { ShoppingListService } from './shoping-list.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -7,13 +8,16 @@ import { Ingrediant } from '../shared/Ingrediant.Model';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-  ingrediants:Ingrediant[] = [
-    new Ingrediant("Apples", 5),
-    new Ingrediant("Tomatoes", 3),
-  ];
-  constructor() { }
+  ingrediants:Ingrediant[] = [];
+  constructor(private slService: ShoppingListService) { }
 
   ngOnInit(): void {
+    this.ingrediants = this.slService.getIngrediants();
+    this.slService.IngrediantsChanged.subscribe(
+      (ingrediants: Ingrediant[]) => {
+        this.ingrediants = ingrediants;
+      }
+    )
   }
 
 }
