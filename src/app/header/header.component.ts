@@ -6,4 +6,7 @@ import { Component } from "@angular/core";
 
 export class HeaderComponent{
     collapsed = true;
+    appStatus = new Promise((resolve, reject)=>{
+        setTimeout(()=>resolve('stable'), 2000);
+    })
 }

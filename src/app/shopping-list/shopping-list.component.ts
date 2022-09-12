@@ -12,6 +12,7 @@ import { ShoppingListService } from './shoping-list.service';
 export class ShoppingListComponent implements OnInit, OnDestroy {
   private igObservable!: Subscription;
   ingrediants:Ingrediant[] = [];
+  filteredvalue = '';
   constructor(private slService: ShoppingListService) { }
 
 

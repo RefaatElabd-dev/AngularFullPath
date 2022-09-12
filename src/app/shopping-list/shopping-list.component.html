@@ -2,9 +2,13 @@
     <div class="col-xs-10">
         <app-shopping-edit></app-shopping-edit>
         <hr/>
+        <Label for="search">Search by Amount: </Label>
+        <br>
+        <input type="number" id="search" [(ngModel)]="filteredvalue">
+        <hr/>
         <ul class="list-group">
             <a 
-              *ngFor="let ingrediant of ingrediants; let i = index" 
+              *ngFor="let ingrediant of (ingrediants| filter:filteredvalue:'amount'); let i = index" 
               class="list-group-item" 
               style="cursor: pointer;"
               (click)="onEditItem(i)">
