@@ -18,6 +18,9 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { shortenPipe } from './shared/Pipes/shorten.pipe';
 import { FilterPipe } from './shared/Pipes/filter.pipe';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoggingInterceptorService } from './shared/interceptors/Logging-interceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -36,12 +39,21 @@ import { FilterPipe } from './shared/Pipes/filter.pipe';
     FilterPipe
   ],
   imports: [
-  BrowserModule,
+BrowserModule,
     AppRouting,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    HttpClientModule
   ],
-  providers: [ShoppingListService, RecipeService],
+  providers: [
+    ShoppingListService,
+    RecipeService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoggingInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
