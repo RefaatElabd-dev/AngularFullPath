@@ -9,11 +9,11 @@ export class LoggingInterceptorService implements HttpInterceptor {
         
             console.log('An Interceptor has been Implemented');
             
-            const modifiedRequest = req.clone({
-                headers: req.headers.append('Auth', 'xyz')
-            });
+            // const modifiedRequest = req.clone({
+            //     headers: req.headers.append('Auth', 'xyz')
+            // });
 
             // return next.handle(req);
-            return next.handle(modifiedRequest);
+            return next.handle(req);
         }
 }
