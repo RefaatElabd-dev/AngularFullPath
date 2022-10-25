@@ -17,12 +17,14 @@ import { AppRouting } from './app-routing-module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { AuthComponent } from './auth/auth.component';
+import { AlertComponent } from './shared/alert/alert.component';
 import { shortenPipe } from './shared/Pipes/shorten.pipe';
 import { FilterPipe } from './shared/Pipes/filter.pipe';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoggingInterceptorService } from './shared/interceptors/Logging-interceptor.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner.component/loading-spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
 
 
 @NgModule({
@@ -35,16 +37,18 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    dropdownDirective,
     RecipeStartComponent,
     RecipeEditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
+    AlertComponent,
+    dropdownDirective,
+    PlaceholderDirective,
     shortenPipe,
     FilterPipe
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     AppRouting,
     FormsModule,
     ReactiveFormsModule, 

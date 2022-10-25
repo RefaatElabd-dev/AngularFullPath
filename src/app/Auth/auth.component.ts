@@ -1,20 +1,28 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from '@angular/forms';
 import { AuthResponseData, AuthService } from './auth.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Router } from "@angular/router";
+import { AlertComponent } from './../shared/alert/alert.component';
+import { PlaceholderDirective } from './../shared/placeholder/placeholder.directive';
 
 @Component({
     selector: 'app-auth',
     templateUrl: './auth.component.html'
 })
-export class AuthComponent implements OnInit{
+export class AuthComponent implements OnInit, OnDestroy {
+    @ViewChild(PlaceholderDirective) HostRef!: PlaceholderDirective;
+
     isLogin: Boolean = true;
     isLoading: boolean = false;
     error: string = '';
 
+    closeSup!: Subscription;
+
     AuthObs!: Observable<AuthResponseData>;
-    constructor(private authService: AuthService, private router: Router){
+    constructor(private authService: AuthService, 
+                private router: Router,
+                private componentFactoryResolver: ComponentFactoryResolver){
 
     }
 
@@ -39,15 +47,37 @@ export class AuthComponent implements OnInit{
 
         this.AuthObs.subscribe(
             res => {
-                console.log(res);
                 this.isLoading = false;
                 this.router.navigate(['/recipes']);
             },
             errMessage => {
                 this.error = errMessage;
+                this.showErrorCmp(errMessage);
                 this.isLoading = false;
             })
 
         form.reset();
+    }
+
+    private showErrorCmp(message: string){
+        const alertCMPFactory = this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
+        const hostViewContainerRef = this.HostRef.viewContainerRef;
+        hostViewContainerRef.clear();
+
+        const alertCMPRef = hostViewContainerRef.createComponent(alertCMPFactory);
+
+        alertCMPRef.instance.message = message;
+        this.closeSup = alertCMPRef.instance.close.subscribe(() => {
+            this.closeSup.unsubscribe();
+            hostViewContainerRef.clear();
+        })
+    }
+
+    // onHandleError(){
+    //     this.error = '';
+    // }
+
+    ngOnDestroy(): void {
+        this.closeSup.unsubscribe();
     }
 }
