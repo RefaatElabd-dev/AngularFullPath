@@ -21,9 +21,6 @@ import { CoreModule } from './core.module';
   BrowserModule,
     AppRouting,
     HttpClientModule,
-    RecipesModule,
-    shoppingListModule,
-    AuthModule,
     SharedModule,
     CoreModule
   ],
