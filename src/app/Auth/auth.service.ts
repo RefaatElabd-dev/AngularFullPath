@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError, tap, throwError, BehaviorSubject } from "rxjs";
 import { UserData } from "./UserData";
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment'
 
 export interface AuthResponseData {
   kind: string;
@@ -16,7 +17,7 @@ export interface AuthResponseData {
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
-  private API_KEY = "AIzaSyBNgsV2oPFCIglHAFklbpnctoU-E5dkHRc";
+  private API_KEY = environment.fireBaseKey;
   userSubject = new BehaviorSubject<UserData | null>(null);
   private tokenExpirationTimer: any;
   private tokenKey = 'userData';
