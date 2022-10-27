@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { Ingrediant } from '../shared/Ingrediant.Model';
 import { ShoppingListService } from './shoping-list.service';
+import { LoggingService } from './../shared/logging.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -13,7 +14,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   private igObservable!: Subscription;
   ingrediants:Ingrediant[] = [];
   filteredvalue = '';
-  constructor(private slService: ShoppingListService) { }
+  constructor(private slService: ShoppingListService, private _logService: LoggingService) { }
 
 
   ngOnInit(): void {
@@ -23,6 +24,8 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
         this.ingrediants = ingrediants;
       }
     )
+
+    this._logService.printLog("Log from Shopping-List ")
   }
 
   onEditItem(index: number){
