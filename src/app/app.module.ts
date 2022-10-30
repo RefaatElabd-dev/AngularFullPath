@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { StoreModule } from '@ngrx/store'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRouting } from './app-routing-module';
+import * as fromApp from './Store/app.reducer';
 
-import { RecipesModule } from './recipes/recipes.module';
-import { shoppingListModule } from './shopping-list/shopping-list.module';
-import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
 import { LoggingService } from './shared/logging.service';
@@ -19,9 +18,10 @@ import { LoggingService } from './shared/logging.service';
     HeaderComponent,
   ],
   imports: [
-  BrowserModule,
+    BrowserModule,
     AppRouting,
     HttpClientModule,
+    StoreModule.forRoot(fromApp.appReducer),
     SharedModule,
     CoreModule
   ],
