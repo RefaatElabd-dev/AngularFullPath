@@ -5,7 +5,6 @@ import { Ingrediant } from './../../shared/Ingrediant.Model';
 import { ShoppingListService } from './../shoping-list.service';
 import { Store } from '@ngrx/store';
 import * as shoppingListActions from '../store/shopping-list.actions';
-import * as fromShoppingList from '../../shared/types/ShppingListState';
 import * as fromappReducer from '../../Store/app.reducer';
 
 @Component({

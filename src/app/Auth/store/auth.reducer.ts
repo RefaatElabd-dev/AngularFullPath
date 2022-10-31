@@ -1,15 +1,28 @@
-
-import { Action } from '@ngrx/store';
 import { UserData } from './../UserData';
+import * as AuthActions from './auth.actions';
 
 export interface State {
-    user: UserData
+    user: UserData | null
 }
 
 const intialState: State = {
-    user: new UserData('', '', '', new Date())
+    user: null
 }
 
-export function authReducer( state = intialState, action: Action){
-    return state;
+export function authReducer( state = intialState, action: AuthActions.AuthActions) {
+    switch(action.type){
+        case AuthActions.LOGIN:
+            const { email, id, token, expirationDate } = action.payload;
+            let user = new UserData(email, id, token, expirationDate);
+            return {
+                ...state,
+                user
+            };
+        case AuthActions.LOGOUT:
+            return {
+                ...state,
+                user: null
+            };
+        default: return state;
+    }
 }
