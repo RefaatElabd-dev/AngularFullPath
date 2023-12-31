@@ -24,6 +24,11 @@
     ],
     "useDefineForClassFields": false
   },
+  "paths": {
+    "@angular/*": [
+      "./node_modules/@angular/*"
+    ]
+  },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
