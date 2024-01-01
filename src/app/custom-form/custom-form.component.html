@@ -1,10 +1,10 @@
 <form>
 
-    <lib-phone class="form-control" id="phone-id" name="phone-name" displayName="mobile." [(ngModel)]="phone2" #phonenumber="ngModel">
+    <lib-phone id="phone-id" name="phone-name" displayName="mobile." [appearAsterisk]="true" [(ngModel)]="phone">
     </lib-phone>
     
+    <div>
+        <p> {{phone}} </p>
+    </div>
 </form>
-<div>
-    <p> {{phone}} </p>
-</div>
 
