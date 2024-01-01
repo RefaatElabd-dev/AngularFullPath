@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
-import {NgxCustomCompsComponent} from "ngx-custom-comps"
+import { CustomFormComponent } from "./custom-form/custom-form.component";
 
 
 const appRoutes: Routes = [
@@ -23,8 +23,11 @@ const appRoutes: Routes = [
   },
   {
     path: "lib",
-    //component: NgxCustomCompsComponent
     loadChildren: () => import("ngx-custom-comps").then((m) => m.NgxCustomCompsModule)
+  },
+  {
+    path: "form",
+    loadChildren: () => import("./custom-form/custom-forms.mudule").then(m => m.CustomFormsModule)
   }
 ];
 
