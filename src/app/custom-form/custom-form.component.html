@@ -1,12 +1,25 @@
 <form>
+    <div class="">
+        <lib-phone id="phone_id" name="phone_name" displayName="mobile."
+            [appearAsterisk]="true" [readOnly]="false" [maxLength]="20"
+            pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" [(ngModel)]="phone">
+        </lib-phone>
 
-    <lib-phone id="phone_id" name="phone_name" displayName="mobile."
-               [appearAsterisk]="true" [readOnly]="false" [maxLength]="6"
-               pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" [(ngModel)]="phone">
-    </lib-phone>
-    
-    <div>
-        <p> {{phone}} </p>
+        <lib-phone id="phone_id" name="phone_name" displayName="mobile."
+                [appearAsterisk]="true" [readOnly]="true" [maxLength]="6"
+                pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" [(ngModel)]="phone">
+        </lib-phone>
+        
+        <div>
+            <p> {{phone}} </p>
+        </div>
     </div>
+    <hr>
+    <div class="">
+        <lib-lock-checker [(ngModel)]="isChecked" name="checker" id="checker">
+
+        </lib-lock-checker>
+    </div>
+   
 </form>
 

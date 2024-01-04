@@ -6,7 +6,8 @@ import { Component, OnInit } from "@angular/core";
   })
   export class CustomFormComponent implements OnInit {
 
-    phone: string = '011519588'
+    phone: string = '011519588';
+    isChecked: boolean = true;
     ngOnInit(): void {
         
     }
